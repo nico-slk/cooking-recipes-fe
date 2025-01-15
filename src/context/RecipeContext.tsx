@@ -24,7 +24,6 @@ export const RecipeProvider: FC<{ children: ReactNode; }> = ({ children }) => {
   const getRecipes = async () => {
     try {
       const recipes = await RecipeService.getRecipes();
-      console.log(recipes);
 
       setRecipes(recipes);
     } catch (error) {

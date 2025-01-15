@@ -31,7 +31,6 @@ export const RecipeService = {
       return response;
     } catch (error) {
       console.error("Error al obtener las recetas:", error);
-      return [];
     }
   },
 
@@ -116,7 +115,6 @@ export const RecipeService = {
       return response;
     } catch (error) {
       console.error("Error al actualizar la receta:", error);
-      return [];
     }
   },
 
@@ -136,7 +134,6 @@ export const RecipeService = {
       return response;
     } catch (error) {
       console.error("Error al obtener las recetas:", error);
-      return [];
     }
   },
 };
