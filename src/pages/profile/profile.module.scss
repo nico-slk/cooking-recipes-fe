@@ -3,21 +3,23 @@
 }
 
 .profile_info {
-  // margin: 50px 100px;
+  padding: 50px 100px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  border: solid 2px white;
+  box-sizing: border-box;
 }
 
 .profile_info_data {
-  width: 60%;
+  width: 75%;
   padding: 25px;
   display: flex;
   flex-direction: column;
   align-items: start;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   border: solid 2px white;
   box-sizing: border-box;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .profile_info_text {
@@ -26,7 +28,7 @@
 }
 
 .profile_info_img {
-  width: 40%;
+  width: 20%;
   display: flex;
   justify-content: center;
   align-items: center;

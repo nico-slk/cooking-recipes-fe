@@ -1,9 +1,13 @@
 .home_container {
-  border: solid 2px white;
-  box-sizing: border-box;
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.home_content {
+  padding-top: 100px;
+  min-width: 1050px;
+  width: 80%;
 }

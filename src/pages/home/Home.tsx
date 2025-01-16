@@ -16,7 +16,9 @@ const Home: FC = () => {
   return (
     <div className={`${style.home_container}`}>
       <Header />
-      <Outlet />
+      <div className={`${style.home_content}`}>
+        <Outlet />
+      </div>
       <Footer />
     </div>
   );

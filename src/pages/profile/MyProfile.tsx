@@ -34,7 +34,9 @@ const MyProfile = () => {
         </div>
       </div>
       <p>Mis recetas</p>
-      <RecipeListCards recipesProps={recipes} />
+      <div className={`${style.recipe_list_cards}`}>
+        <RecipeListCards recipesProps={recipes} />
+      </div>
     </div>
   );
 };
