@@ -17,16 +17,20 @@ export const AuthService = {
       });
 
       if (!fetchUser.ok) {
-        const { message } = await fetchUser.json();
-        throw new Error(`Error al iniciar sesión: ${message}`);
+        const error = await fetchUser.json();
+        if (error.message) {
+          throw new Error(`Error al iniciar sesión: ${error.message}`);
+        } else {
+          throw new Error(`Error al iniciar sesión: ${error}`);
+        }
       }
 
       const response = await fetchUser.json();
 
-      const { id, name, lastname, email: userEmail } = response.user;
+      const { id, name, lastname, email: userEmail, photo } = response.user;
       const { token } = response;
 
-      const userData = { id, name, lastname, email: userEmail };
+      const userData = { id, name, lastname, email: userEmail, photo };
       sessionStorage.setItem("user", JSON.stringify(userData));
       sessionStorage.setItem("token", JSON.stringify(token));
       const userResponse = {
@@ -34,12 +38,21 @@ export const AuthService = {
         token,
       };
 
-      return userResponse;
+      return {
+        created: true,
+        userResponse,
+      };
     } catch (error: any) {
       console.error(
         "Error al iniciar sesión:",
         error.response?.data || error.message
       );
+      return {
+        created: false,
+        message: `Error al crear el usuario: ${
+          error.response?.data || error.message
+        }`,
+      };
     }
   },
 
@@ -49,12 +62,14 @@ export const AuthService = {
     email,
     password,
     repassword,
+    photo,
   }: {
     name: string;
     lastname: string;
     email: string;
     password: string;
     repassword: string;
+    photo: string;
   }): Promise<any> => {
     console.log("Usuario registrado:", {
       name,
@@ -62,12 +77,20 @@ export const AuthService = {
       email,
       password,
       repassword,
+      photo,
     });
 
     try {
       const fetchUser = await fetch(`${authUrl}/register`, {
         method: "POST",
-        body: JSON.stringify({ name, lastname, email, password, repassword }),
+        body: JSON.stringify({
+          name,
+          lastname,
+          email,
+          password,
+          repassword,
+          photo,
+        }),
         headers: { "Content-Type": "application/json" },
       });
 

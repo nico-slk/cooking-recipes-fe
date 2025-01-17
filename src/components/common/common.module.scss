@@ -53,3 +53,33 @@
   bottom: 0;
   height: 70px;
 }
+
+.ingredient_item_container {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: dotted 1px white;
+}
+
+.ingredient_text_name {
+  font-size: 24px;
+}
+
+.ingredient_text {
+  margin: 0;
+  padding: 0;
+}
+
+.delete_button {
+  height: 30px;
+  width: 30px;
+  margin-left: 20px;
+  background-color: rgb(255, 68, 68);
+  border: none;
+  border-radius: 5px;
+  font-size: 22px;
+  color: rgb(0, 0, 0);
+  text-align: center;
+}

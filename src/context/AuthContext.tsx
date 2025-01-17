@@ -6,7 +6,7 @@ interface AuthContextProps {
   user: UserClass | null;
   login: (email: string, password: string) => void;
   logout: () => void;
-  register: (newUser: { name: string, lastname: string, email: string, password: string, repassword: string; }) => Promise<RegisterResponse>;
+  register: (newUser: { name: string, lastname: string, email: string, password: string, repassword: string, photo: string; }) => Promise<RegisterResponse>;
   isAuthenticated: boolean;
 }
 
@@ -26,7 +26,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode; }> = ({ childre
   const login = async (email: string, password: string) => {
     try {
       const loguedUser = await AuthService.login({ email, password });
-      const userData = loguedUser.user;
+      const userData = loguedUser.userResponse.user;
 
       setUser(userData);
     } catch (error) {

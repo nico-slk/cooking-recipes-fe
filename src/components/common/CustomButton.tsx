@@ -3,7 +3,7 @@
 interface CustomButtonProps {
   text: string;
   style: string;
-  fn: () => void;
+  fn?: () => void;
   type?: 'button' | 'submit' | 'reset';
   icon?: string;
 }

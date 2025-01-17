@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
+import { FaImage } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import CustomButton from '../../components/common/CustomButton';
 import { useAuth } from '../../context/AuthContext';
@@ -11,17 +12,44 @@ const Register: React.FC = () => {
   const [password, setPassword] = useState('');
   const [repassword, setRePassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [base64Image, setBase64Image] = useState("");
   const { register, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const response = await register({ name, lastname, password, repassword, email });
+    const response = await register({ name, lastname, password, repassword, email, photo: base64Image });
     if (response.created) {
       navigate('/login');
     } else {
       setErrorMessage(response.message);
     }
+  };
+
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+
+    const { files } = e.target;
+
+    if (files === null) {
+      return null;
+    }
+
+    const file = files[0];
+
+    if (file && file.type.startsWith("image/") && file.size < 5 * 1024 * 1024) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setBase64Image(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      alert("Por favor selecciona una imagen válida (máximo 5MB).");
+      e.target.value = "";
+    }
+  };
+
+  const handleDeletePhoto = () => {
+    setBase64Image("");
   };
 
   useEffect(() => {
@@ -33,6 +61,26 @@ const Register: React.FC = () => {
   return (
     <form onSubmit={handleSubmit} className={`${style.auth_form}`}>
       <h1 className={`${style.auth_title}`}>Registro</h1>
+
+      {base64Image ? (
+        <div className={`${style.image_preview}`}>
+          <img src={base64Image} alt="Preview" onClick={handleDeletePhoto} />
+        </div>
+      ) : (
+        <div className={`${style.image_preview_empty}`} >
+
+          <label htmlFor="file-upload" className={`${style.file_label}`}>
+            <FaImage />
+            <input
+              type="file"
+              id="file-upload"
+              accept="image/*"
+              onChange={handleFileChange}
+              className={`${style.file_input}`}
+            />
+          </label>
+        </div>
+      )}
 
       <div className={`${style.auth_input_container}`}>
         <label className={`${style.auth_label}`}>
@@ -74,7 +122,7 @@ const Register: React.FC = () => {
             <path
               d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
           </svg>
-          <input type="text" className={`${style.auth_input}`} placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input type="email" className={`${style.auth_input}`} placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
         </label>
       </div>
 

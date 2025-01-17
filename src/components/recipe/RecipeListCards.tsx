@@ -4,18 +4,36 @@ import { Recipe } from '../../interfaces/recipe.interface';
 import RecipeCard from './RecipeCard';
 import style from './recipe.module.scss';
 
-const RecipeListCards = ({ recipesProps }: { recipesProps: Recipe[] | null; }) => {
-  const [recipesState, serRecipesState] = useState<Recipe[] | null>(null);
+const RecipeListCards = () => {
+  const [recipesState, setRecipesState] = useState<Recipe[] | null>(null);
+  const [loading, setLoading] = useState(true);
   const { recipes, getRecipes } = useRecipe();
 
   useEffect(() => {
-    if (recipesProps === null || recipesProps.length <= 0) {
-      getRecipes();
-      serRecipesState(recipes);
-    } else {
-      serRecipesState(recipesProps);
-    }
+    const fetchRecipe = async () => {
+      setLoading(true);
+      await getRecipes();
+      setRecipesState(recipes);
+      setLoading(false);
+    };
+
+    fetchRecipe();
+
   }, []);
+
+  useEffect(() => {
+    setRecipesState(recipes);
+  }, [recipes]);
+
+  if (loading) {
+    console.log(loading);
+
+    return (
+      <div className={`${style.loading_container}`}>
+        <p>Cargando receta...</p>
+      </div>
+    );
+  }
 
   return (
     <div className={`${style.recipe_list_container}`}>

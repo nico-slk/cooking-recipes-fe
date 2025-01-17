@@ -6,16 +6,10 @@ const RecipeCard = ({ recipe, create }: { recipe: Recipe | null, create: boolean
 
   const navigate = useNavigate();
 
-  const handleNavToCreate = () => {
-    console.log('To create');
-
-    navigate('/create');
-  };
-
   if (create) {
     return (
       <div className={`${style.recipe_container}`}>
-        <div className={`${style.recipe_content} ${style.recipe_svg_content}`} onClick={handleNavToCreate}>
+        <div className={`${style.recipe_content} ${style.recipe_svg_content}`} onClick={() => navigate('/create')}>
           <svg
             viewBox="-1 -1 34 34"
             version="1.1"
@@ -38,10 +32,10 @@ const RecipeCard = ({ recipe, create }: { recipe: Recipe | null, create: boolean
   }
 
   return (
-    <div className={`${style.recipe_container}`}>
+    <div className={`${style.recipe_container}`} onClick={() => navigate(`/${recipe?.id}`)}>
       <div className={`${style.recipe_content}`}>
-        <div className={`${style.recipe_image}`}>
-          Image
+        <div className={`${style.recipe_image_container}`}>
+          <img src={recipe?.image} alt="Preview" className={`${style.recipe_image}`} />
         </div>
         <div className={`${style.recipe_title}`}>
           <p>

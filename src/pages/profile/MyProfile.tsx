@@ -24,7 +24,7 @@ const MyProfile = () => {
     <div className={`${style.profile_container}`}>
       <div className={`${style.profile_info}`}>
         <div className={`${style.profile_info_img}`}>
-          <img src="https://i.ibb.co/WGCzCQJ/860034bb042cf9aa8d65d796b16b24d9.jpg" alt="" className={`${style.profile_photo}`} />
+          <img src={user?.photo} alt="" className={`${style.profile_photo}`} />
         </div>
         <div className={`${style.profile_info_data}`}>
           <p>Nombre: <span className={`${style.profile_info_text}`}>{user?.name}</span></p>

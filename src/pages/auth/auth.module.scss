@@ -67,3 +67,59 @@
 .auth_navigate {
   text-decoration: none;
 }
+
+.file_label {
+  border-radius: 8px;
+  font-weight: bold;
+
+  //sfe
+  width: 150px;
+  height: 150px;
+  border: solid 1px gray;
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  color: rgba(125, 125, 125, 0.3);
+  //q3
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+
+  .file_input {
+    display: none; // Escondemos el input real
+  }
+}
+
+.image_preview {
+  margin-top: 16px;
+  background-color: rgb(125, 41, 41);
+  width: 150px;
+  height: 150px;
+  border-radius: 8px;
+  transition: ease 0.3s;
+  &:hover {
+    transition: ease 0.3s;
+  }
+  img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: ease 0.3s;
+    &:hover {
+      opacity: 0.5;
+      transition: ease 0.3s;
+    }
+    &:active {
+      transition: ease 0.3s;
+    }
+  }
+}

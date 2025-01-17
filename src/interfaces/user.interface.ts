@@ -8,4 +8,5 @@ export interface UserClass {
   name: string;
   lastname: string;
   email: string;
+  photo: string;
 }

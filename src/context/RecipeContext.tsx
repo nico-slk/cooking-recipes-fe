@@ -41,7 +41,6 @@ export const RecipeProvider: FC<{ children: ReactNode; }> = ({ children }) => {
     }
   };
 
-  // const createRecipe = RecipeService.createRecipe;
   const createRecipe = async (recipe: Recipe) => {
     try {
       const newRecipe = await RecipeService.createRecipe(recipe);
@@ -51,7 +50,6 @@ export const RecipeProvider: FC<{ children: ReactNode; }> = ({ children }) => {
     }
   };
 
-  // const getAllRecipeByUserId = RecipeService.getAllRecipeByUserId;
   const getAllRecipeByUserId = async () => {
     try {
       const recipe = await RecipeService.getAllRecipeByUserId();
@@ -80,7 +78,6 @@ export const RecipeProvider: FC<{ children: ReactNode; }> = ({ children }) => {
     }
   };
 
-  // const deleteRecipe = RecipeService.deleteRecipe;
   const deleteRecipe = async (recipeId: string) => {
     try {
       const recipe = await RecipeService.deleteRecipe(recipeId);

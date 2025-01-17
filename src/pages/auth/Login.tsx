@@ -17,8 +17,6 @@ const Login: React.FC = () => {
   };
 
   useEffect(() => {
-    console.log(isAuthenticated);
-
     if (isAuthenticated) {
       navigate('/');
     }

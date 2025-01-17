@@ -121,7 +121,7 @@ export const RecipeService = {
   deleteRecipe: async (recipeId: string) => {
     try {
       const fetchRecipe = await fetch(`${recipeURL}/${recipeId}`, {
-        method: "PUT",
+        method: "DELETE",
         headers: {
           "Content-Type": "application/json",
           Authorization:

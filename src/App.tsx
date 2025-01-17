@@ -7,6 +7,7 @@ import Register from './pages/auth/Register';
 import Home from './pages/home/Home';
 import MyProfile from './pages/profile/MyProfile';
 import CreateRecipe from './pages/recipe/CreateRecipe';
+import Recipe from './pages/recipe/Recipe';
 
 function App() {
 
@@ -18,7 +19,8 @@ function App() {
 
         <Route element={<ProtectedRoute />}>
           <Route path="/" element={<RecipeProvider ><Home /></RecipeProvider>} >
-            <Route path="/" element={<RecipeListCards recipesProps={[]} />} />
+            <Route path="/" element={<RecipeListCards />} />
+            <Route path="/:recipeId" element={<Recipe />} />
             <Route path="create" element={<CreateRecipe />} />
             <Route path="my-profile" element={<MyProfile />} />
           </Route>
